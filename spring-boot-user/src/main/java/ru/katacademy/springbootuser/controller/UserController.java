@@ -4,23 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.katacademy.springbootuser.model.User;
-import ru.katacademy.springbootuser.service.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.katacademy.springbootuser.service.UserServiceImpl;
 
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
     @GetMapping(value = "/")
     public String index(ModelMap model) {
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userService.listUsers());
         return "index";
     }
 
@@ -31,13 +28,13 @@ public class UserController {
 
     @PostMapping("/user-create")
     public String createUser(User user) {
-        userService.saveUser(user);
+        userService.addUser(user);
         return "redirect:/";
     }
 
     @DeleteMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
-        userService.deleteById(id);
+        userService.deleteUser(id);
         return "redirect:/";
     }
 
@@ -50,7 +47,7 @@ public class UserController {
 
     @PutMapping("/user-update")
     public String updateUser(User user) {
-        userService.saveUser(user);
+        userService.updateUser(user);
         return "redirect:/";
     }
 }

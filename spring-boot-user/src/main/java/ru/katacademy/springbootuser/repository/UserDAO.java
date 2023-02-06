@@ -1,10 +1,10 @@
-package ru.katacademy.springbootuser.service;
+package ru.katacademy.springbootuser.repository;
 
 import ru.katacademy.springbootuser.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDAO {
     List<User> listUsers();
 
     void addUser(User user);
