@@ -1,4 +1,4 @@
-package ru.katacademy.springbootuser.repository;
+package ru.katacademy.springbootuser.DAO;
 
 import org.springframework.stereotype.Component;
 import ru.katacademy.springbootuser.model.User;
